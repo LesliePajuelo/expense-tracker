@@ -1,0 +1,19 @@
+<head>
+  <title>expense-tracker</title>
+</head>
+
+<body>
+  <h1>Expense Tracker</h1>
+  	{{> entryList}}
+</body>
+
+
+<!--Templates-->
+
+<template name = 'entryList'>
+<ul>
+	{{#each entries}}
+		<li>{{name}}{{value}}</li>
+		{{/each}}
+</ul>
+</template>	
