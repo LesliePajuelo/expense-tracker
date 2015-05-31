@@ -4,22 +4,27 @@
 
 <body>
 
-	<nav class="green darken-1">
+	<nav class="blue darken-1">
 		<div class="nav-wrapper container">
 			<a href="#" class="brand-logo">Expense Tracker</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li><a href="#"></a></li>
+				<li>{{> loginButtons}}</li>
 			</ul>
 		</div>
 	</nav>
 
 	<div class="container">
 		<div class="row">
+		<div class="col s3">
+				
+			
+			</div>
 			<div class="col s3">
+
 				<form class="new-entry">
 					<input type="text" name="text" placeholder="Entry Name"  class="validate"/>
 
-					<input type="number" step="any" name="val" placeholder="Value"  class="validate"/>
+					<input type="number" step="any" name="ammount" placeholder="Value"  class="validate"/>
 
 					<input type="date" name="date" placeholder="Date"  class="datepicker validate"/>
 
@@ -29,30 +34,20 @@
 					</button>
 				</form>
 			</div>
-
-			<div class="col s6">
+					<div class="col s6">
+			<div class="card">
+					<div class="card-content">
+					<p class="red-text">Balance</p>
+						<span class="card-title grey-text text-darken-4">${{balance}}</span>
+						
+					</div>
+				</div>
 				{{> entryList}}
 			</div>
 
-			<div class="col s3">
-				
-				<div class="card">
-					<div class="card-content">
-						<span class="card-title grey-text text-darken-4">CHF {{balance}}</span>
-						<p class="orange-text">Balance</p>
-					</div>
-				</div>
-
-				<div class="card">
-					<div class="card-image">
-						<img src="https://lh4.googleusercontent.com/-4XIk48ckXps/UqId6yaK-HI/AAAAAAAAACE/u1tyIimRniM/s0-d/ge-stock-chart-yahoo-finance-ipad-app.png">
-						<span class="card-title">Charts</span>
-					</div>
-					<div class="card-content">
-						<p class="orange-text">Manage over time</p>
-					</div>
-				</div>
-			</div>
 		</div>
+
+
+
 	</div>
 </body>

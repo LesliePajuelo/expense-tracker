@@ -1,13 +1,17 @@
+//subscripitons
+Meteor.subscribe('entries');
+
+//events
 Template.body.events(
 {
 	"submit .new-entry": function(event)
 		{
 			var text = event.target.text.value;
-			var value = event.target.val.value;
+			var ammount = event.target.ammount.value;
 			var date = event.target.date.value;
 
 			// send add request to the server
-			Meteor.call("addEntry", text, value, date);
+			Meteor.call("addEntry", text, ammount, date);
 
 			// empty form
 			event.target.reset();
@@ -23,6 +27,7 @@ Template.body.events(
 		}
 })
 
+//helpers
 Template.body.helpers(
 {
 	balance: function()
@@ -31,12 +36,18 @@ Template.body.helpers(
 				Entries.find({}).fetch(), 
 				function(memo, entry)
 					{ 
-						if (entry.val) 
-							return memo + parseFloat(entry.val)
+						if (entry.ammount) 
+							return memo + parseFloat(entry.ammount)
 						else
 							return memo 
 					}, 
 				0.0)
 		}
+})
+
+Meteor.startup( function()
+{
+	// instantiate the date picking elements
+	$('.datepicker').pickadate();
 })
         

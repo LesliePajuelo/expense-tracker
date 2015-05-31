@@ -3,12 +3,12 @@ Template.entry.helpers(
 {
 	negative: function() 
 		{
-			return this.val < 0
+			return this.ammount < 0
 		},
 
 	positive: function() 
 		{
-			return this.val > 0
+			return this.ammount > 0
 		},
 
 	expanded: function()
@@ -28,7 +28,7 @@ Template.entry.helpers(
 
 	dayDate: function()
 		{
-			return moment(this.date).format("D MMMM, YYYY")
+			return moment(this.date).format("MMMM D, YYYY")
 		}
 })
 
@@ -62,10 +62,10 @@ Template.entry.events(
 	"submit .edit-entry": function(event)
 		{
 			var text = event.target.text.value;
-			var value = event.target.val.value;
+			var ammount = event.target.ammount.value;
 			var date = event.target.date.value;
 
-			Meteor.call("editEntry", this._id, text, value, date)
+			Meteor.call("editEntry", this._id, text, ammount, date)
 
 			// close the edit panel
 			Session.set("editing-entry", "")
