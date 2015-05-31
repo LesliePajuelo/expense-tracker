@@ -1,116 +1,58 @@
 <head>
-  <title>expense-tracker</title>
+	<title>Expense Tracker</title>
 </head>
 
 <body>
-  <h1> Expense Tracker</h1>
-  {{> loginButtons}}
-   <div>
-      
-        <form class="new-entry">
-          <input type="text" name="text" placeholder="Entry Name"  class="validate"/>
 
-          <input type="number" step="any" name="val" placeholder="Value"  class="validate"/>
+	<nav class="green darken-1">
+		<div class="nav-wrapper container">
+			<a href="#" class="brand-logo">Expense Tracker</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="#"></a></li>
+			</ul>
+		</div>
+	</nav>
 
-          <input type="date" name="date" placeholder="Date"  class="datepicker validate"/>
+	<div class="container">
+		<div class="row">
+			<div class="col s3">
+				<form class="new-entry">
+					<input type="text" name="text" placeholder="Entry Name"  class="validate"/>
 
-          <button type="submit">
-            Add</button>
-        </form>
-      </div>
+					<input type="number" step="any" name="val" placeholder="Value"  class="validate"/>
 
-      <div>
-        {{> entryList}}
-      </div>
+					<input type="date" name="date" placeholder="Date"  class="datepicker validate"/>
 
-              
-        <div>
-          <div>
-           <p class="Balance">
-            Balance: {{balance}}</p>
-          </div>
-        </div> 
+					<button type="submit" class="waves-effect waves-light btn blue" style="width: 100%">
+						Add
+						<i class="mdi-content-send right"></i>
+					</button>
+				</form>
+			</div>
+
+			<div class="col s6">
+				{{> entryList}}
+			</div>
+
+			<div class="col s3">
+				
+				<div class="card">
+					<div class="card-content">
+						<span class="card-title grey-text text-darken-4">CHF {{balance}}</span>
+						<p class="orange-text">Balance</p>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-image">
+						<img src="https://lh4.googleusercontent.com/-4XIk48ckXps/UqId6yaK-HI/AAAAAAAAACE/u1tyIimRniM/s0-d/ge-stock-chart-yahoo-finance-ipad-app.png">
+						<span class="card-title">Charts</span>
+					</div>
+					<div class="card-content">
+						<p class="orange-text">Manage over time</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
-
-
-<!--Templates-->
-
-<template name = 'entryList'>
-<ul class = "entry-list">
-	{{#each entries}}
-  	<li >
-    <span>{{name}}</span>
-    <span>{{value}}</span>
-    </li>
-		{{/each}}
-</ul>
-</template>	
-
-
-<template name="entry">
-  <li class="{{#if negative}}negative-entry{{else}}positive-entry{{/if}} card-panel row entry">
-    
-    
-    <div style="display:{{#unless editing}}none{{else}}bloc{{/unless}}">
-      
-        
-      <form class="edit-entry col s12">
-
-        <div class="row" style="margin-bottom:0">
-
-          <div class="col s8">
-            <input type="text" name="text" placeholder="Entry Name" value="{{text}}" class="validate"/>
-          </div>
-
-          <div class="col s4">
-            <input type="number" step="any" name="val" placeholder="Value" value="{{val}}"  class="validate"/>
-          </div>
-
-          <div class="col s8">
-            <input type="date" name="date" placeholder="Date" value="{{dayDate}}" class="datepicker validate"/>
-          </div>
-
-          <div class="col s4">
-            <button type="submit" class="waves-effect waves-light btn blue" style="width: 100%">
-              save
-              <i class="mdi-content-save right"></i>
-            </button>
-          </div>
-
-        </div>
-
-      </form>
-
-
-      <span>
-        <i id="delete-entry" class="mdi-action-delete right"></i>
-        <i id="edit-entry" class="mdi-editor-mode-edit right"></i>
-      </span>
-
-    </div>
-
-    <div style="display:{{#if editing}}none{{else}}bloc{{/if}}">
-      
-      <div class="entry-header">
-        <span class="truncate col s8 entry-text">{{text}}</span>
-        <span class="badge">CHF <b class="value">{{val}}</b></span>
-      </div>
-
-      {{#if expanded}}
-      <div class="col s12">
-
-        <span>
-          {{dateFromNow}}
-          <i id="delete-entry" class="mdi-action-delete right"></i>
-          <i id="edit-entry" class="mdi-editor-mode-edit right"></i>
-        </span>
-
-      </div>
-
-      {{/if}}
-
-    </div>
-
-
-  </li>
-</template>
