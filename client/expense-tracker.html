@@ -3,24 +3,114 @@
 </head>
 
 <body>
-  <h1>Expense Tracker</h1>
-  {{loginButtons}}
-  <form class = 'new-entry'>
-  <input type = "text" name = "name" placeholder= "Enter new entry here"/>
-  <input type = "number" name = "value"/>
-  <input type = "date" name = "date"/>
-  <button type="submit">Add New Entry</button>
-  </form>
-  	{{> entryList}}
+  <h1> Expense Tracker</h1>
+  {{> loginButtons}}
+   <div>
+      
+        <form class="new-entry">
+          <input type="text" name="text" placeholder="Entry Name"  class="validate"/>
+
+          <input type="number" step="any" name="val" placeholder="Value"  class="validate"/>
+
+          <input type="date" name="date" placeholder="Date"  class="datepicker validate"/>
+
+          <button type="submit">
+            Add</button>
+        </form>
+      </div>
+
+      <div>
+        {{> entryList}}
+      </div>
+
+              
+        <div>
+          <div>
+           <p class="Balance">
+            Balance: {{balance}}</p>
+          </div>
+        </div> 
 </body>
 
 
 <!--Templates-->
 
 <template name = 'entryList'>
-<ul>
+<ul class = "entry-list">
 	{{#each entries}}
-		<li>{{name}}{{value}}</li>
+  	<li >
+    <span>{{name}}</span>
+    <span>{{value}}</span>
+    </li>
 		{{/each}}
 </ul>
 </template>	
+
+
+<template name="entry">
+  <li class="{{#if negative}}negative-entry{{else}}positive-entry{{/if}} card-panel row entry">
+    
+    
+    <div style="display:{{#unless editing}}none{{else}}bloc{{/unless}}">
+      
+        
+      <form class="edit-entry col s12">
+
+        <div class="row" style="margin-bottom:0">
+
+          <div class="col s8">
+            <input type="text" name="text" placeholder="Entry Name" value="{{text}}" class="validate"/>
+          </div>
+
+          <div class="col s4">
+            <input type="number" step="any" name="val" placeholder="Value" value="{{val}}"  class="validate"/>
+          </div>
+
+          <div class="col s8">
+            <input type="date" name="date" placeholder="Date" value="{{dayDate}}" class="datepicker validate"/>
+          </div>
+
+          <div class="col s4">
+            <button type="submit" class="waves-effect waves-light btn blue" style="width: 100%">
+              save
+              <i class="mdi-content-save right"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </form>
+
+
+      <span>
+        <i id="delete-entry" class="mdi-action-delete right"></i>
+        <i id="edit-entry" class="mdi-editor-mode-edit right"></i>
+      </span>
+
+    </div>
+
+    <div style="display:{{#if editing}}none{{else}}bloc{{/if}}">
+      
+      <div class="entry-header">
+        <span class="truncate col s8 entry-text">{{text}}</span>
+        <span class="badge">CHF <b class="value">{{val}}</b></span>
+      </div>
+
+      {{#if expanded}}
+      <div class="col s12">
+
+        <span>
+          {{dateFromNow}}
+          <i id="delete-entry" class="mdi-action-delete right"></i>
+          <i id="edit-entry" class="mdi-editor-mode-edit right"></i>
+        </span>
+
+      </div>
+
+      {{/if}}
+
+    </div>
+
+
+  </li>
+</template>

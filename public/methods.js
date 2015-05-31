@@ -1,3 +1,4 @@
+
 Meteor.methods(
 {
 	addEntry: function(name, value, date)
@@ -5,7 +6,7 @@ Meteor.methods(
 		Entries.insert(
 		{
 			name: name,
-			value: value,
+			value: parseFloat(value),
 			date: date,
 			timestamp: new Date(date)
 		}),
