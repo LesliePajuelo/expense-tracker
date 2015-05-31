@@ -4,6 +4,13 @@
 
 <body>
   <h1>Expense Tracker</h1>
+  {{loginButtons}}
+  <form class = 'new-entry'>
+  <input type = "text" name = "name" placeholder= "Enter new entry here"/>
+  <input type = "number" name = "value"/>
+  <input type = "date" name = "date"/>
+  <button type="submit">Add New Entry</button>
+  </form>
   	{{> entryList}}
 </body>
 
